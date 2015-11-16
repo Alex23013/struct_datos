@@ -1,0 +1,17 @@
+class nodo
+{
+public:
+	int dato;
+	nodo *sig;
+	nodo *ant;
+//nodo(){dato =0;sig=NULL;ant=NULL;}
+nodo(int dato=0)
+	{this->dato=dato;
+	sig=NULL;ant=NULL;}
+/*nodo(int dato, nodo *sig){
+    this->dato=dato;
+    this-> sig=sig;
+}*/
+void add_dato(int dato){this->dato=dato;}
+//~nodo();
+};
