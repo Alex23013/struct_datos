@@ -55,6 +55,16 @@ public:
 		}
 	cout <<" "<< end->dato<<endl;
 	}
+	/*
+	cola operator+(cola a,cola b) {
+	cola tmp ;
+	for(int i =0;i<a.size;i++)
+		{
+		tmp.add_nodo(a->dato)
+		}
+	return tmp;
+	
+	}*/
 	
 
 };
