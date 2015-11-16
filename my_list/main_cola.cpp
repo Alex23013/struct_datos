@@ -25,7 +25,7 @@ int main()
 		cout << "cuantos datos quiere añadir" <<endl;
 		cin>>datos;	
 		for(int i =0;i< datos;i++)
-			{cout << "Ingrese el dato "<< i <<endl;
+			{cout << "Ingrese el dato "<< i+1 <<endl;
 			int n;
 			cin>>n;		
 			mycola.add_nodo(n);}
