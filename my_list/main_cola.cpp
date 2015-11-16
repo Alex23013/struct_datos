@@ -20,10 +20,15 @@ int main()
 	caratula();
 	cin >> opcion;
 	if(opcion ==1)	
-		{cout << "que dato desea añadir ? "<< endl;
-		int n;
-		cin>>n;		
-		mycola.add_nodo(n);
+		{
+		int datos;
+		cout << "cuantos datos quiere añadir" <<endl;
+		cin>>datos;	
+		for(int i =0;i< datos;i++)
+			{cout << "Ingrese el dato "<< i <<endl;
+			int n;
+			cin>>n;		
+			mycola.add_nodo(n);}
 		cout << "la nueva cola es " <<endl;
 		mycola.print_cola();}
 	if(opcion ==3)	
