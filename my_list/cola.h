@@ -1,10 +1,11 @@
 using namespace std;
+template<typename T>
 class cola
 {
 public:
-	nodo *start;
-	nodo *end;
-	nodo *cent;
+	nodo<T> *start;
+	nodo<T> *end;
+	nodo<T> *cent;
 	
 	
 	int size ;
@@ -17,7 +18,7 @@ public:
 		{return true;}
 		return false;
 		}	
-	void add_nodo(int dato)
+	void add_nodo(T dato)
 	{
 		cent=new nodo(dato);
 		size++;
@@ -55,16 +56,58 @@ public:
 		}
 	cout <<" "<< end->dato<<endl;
 	}
-	/*
-	cola operator+(cola a,cola b) {
+	cola operator+(const cola o,const cola p) {
 	cola tmp ;
-	for(int i =0;i<a.size;i++)
+	nodo<T> *cent;
+	cent=o->start;
+	for(int i =0;i<o.size;i++)
 		{
-		tmp.add_nodo(a->dato)
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
+		}
+	cent=p->start;
+	for(int i =0;i<p.size;i++)
+		{
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
 		}
 	return tmp;
+	}
+	lista operator-(const lista o,const lista p) {
+	lista tmp ;
+	nodo<T> *cent;
+	cent=o->start;
+	for(int i =0;i<o.size;i++)
+		{
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
+		}
+	cent=p->start;
+	for(int i =0;i<p.size;i++)
+		{
+		while(cent)
+			{
+			cent = find(cent->dato);
+			if (cent == NULL)
+				{tmp.add_nodo(cent->dato);} 
+			cent =cent->sig;
+			}
+		}
+	return tmp;	
+	}
 	
-	}*/
 	
 
 };
