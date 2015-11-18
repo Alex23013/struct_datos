@@ -1,10 +1,11 @@
 using namespace std;
+template<typename T>
 class lista
 {
 public:
-	nodo *start;
-	nodo *end;
-	nodo *cent;
+	nodo<T> *start;
+	nodo<T> *end;
+	nodo<T> *cent;
 	
 	int size ;
 
@@ -16,7 +17,7 @@ public:
 		{return true;}
 		return false;
 		}	
-	void add_nodo(int dato)
+	void add_nodo(T dato)
 	{
 		cent=new nodo(dato);
 		size++;
@@ -29,7 +30,7 @@ public:
 		end =cent;		
 		}
 	}
-	nodo* find(int dato)
+	nodo* find(T dato)
 	{
 		cent =start;
 		while(cent && cent-> dato!=dato)
@@ -39,7 +40,7 @@ public:
 		return cent;
 	}
 	
-	void quitar_nodo(int dato)
+	void quitar_nodo(T dato)
 	{
 		cent = find(dato);
 		size--;
@@ -69,6 +70,57 @@ public:
 		cent =cent->sig;
 	}
 	cout << end->dato<<endl;
+	}
+	lista operator+(const lista o,const lista p) {
+	lista tmp ;
+	nodo<T> *cent;
+	cent=o->start;
+	for(int i =0;i<o.size;i++)
+		{
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
+		}
+	cent=p->start;
+	for(int i =0;i<p.size;i++)
+		{
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
+		}
+	return tmp;
+	}
+	lista operator-(const lista o,const lista p) {
+	lista tmp ;
+	nodo<T> *cent;
+	cent=o->start;
+	for(int i =0;i<o.size;i++)
+		{
+		while(cent->sig)
+			{
+			tmp.add_nodo(cent->dato); 
+			cent =cent->sig;
+			}
+		tmp.add_nodo(end->dato);		
+		}
+	cent=p->start;
+	for(int i =0;i<p.size;i++)
+		{
+		while(cent)
+			{
+			cent = find(cent->dato);
+			if (cent == NULL)
+				{tmp.add_nodo(cent->dato);} 
+			cent =cent->sig;
+			}
+		}
+	return tmp;	
 	}
 
 };
