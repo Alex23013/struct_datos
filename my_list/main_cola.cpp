@@ -1,5 +1,4 @@
 #include <iostream>
-#include "nodo.h"
 #include "cola.h"
 using namespace std;
 
@@ -12,7 +11,7 @@ void caratula()
 }
 int main()
 {
-	cola mycola;
+	cola<int> mycola;
 	int opcion;
 	int salida =5;
 	while(salida != 0)
@@ -40,4 +39,17 @@ int main()
 	cout << "1: volver al menu    0: salir"<<endl;
 	cin >> salida;
 	}
+	cola<int> b;
+	cout << "una lista de prueba"<<endl;
+	for(int i =0;i< 4;i++)
+		{b.add_nodo(i);}
+	b.print_cola();
+	
+	cola<int> c;
+	cout <<"La suma: "<<endl;
+	c=mycola+b;
+	c.print_cola();
+	cout <<"La resta: "<<endl;
+	c=mycola-b;
+	c.print_cola();
 }
