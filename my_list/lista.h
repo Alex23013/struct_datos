@@ -1,11 +1,10 @@
 using namespace std;
-template<typename T>
 class lista
 {
 public:
-	nodo<T> *start;
-	nodo<T> *end;
-	nodo<T> *cent;
+	nodo *start;
+	nodo *end;
+	nodo *cent;
 	
 	int size ;
 
@@ -17,7 +16,7 @@ public:
 		{return true;}
 		return false;
 		}	
-	void add_nodo(T dato)
+	void add_nodo(int dato)
 	{
 		cent=new nodo(dato);
 		size++;
@@ -30,7 +29,7 @@ public:
 		end =cent;		
 		}
 	}
-	nodo* find(T dato)
+	nodo* find(int dato)
 	{
 		cent =start;
 		while(cent && cent-> dato!=dato)
@@ -40,7 +39,7 @@ public:
 		return cent;
 	}
 	
-	void quitar_nodo(T dato)
+	void quitar_nodo(int dato)
 	{
 		cent = find(dato);
 		size--;
@@ -71,56 +70,47 @@ public:
 	}
 	cout << end->dato<<endl;
 	}
-	lista operator+(const lista o,const lista p) {
+
+	lista operator+(lista b) {
 	lista tmp ;
-	nodo<T> *cent;
-	cent=o->start;
-	for(int i =0;i<o.size;i++)
+	cent=start;
+	while(cent->sig)
 		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
-			}
-		tmp.add_nodo(end->dato);		
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
-	cent=p->start;
-	for(int i =0;i<p.size;i++)
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent->sig)
 		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
-			}
-		tmp.add_nodo(end->dato);		
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
+	tmp.add_nodo(cent->dato);
 	return tmp;
 	}
-	lista operator-(const lista o,const lista p) {
+
+	lista operator-(lista b) {
 	lista tmp ;
-	nodo<T> *cent;
-	cent=o->start;
-	for(int i =0;i<o.size;i++)
+	cent=start;
+	while(cent->sig)
 		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
-			}
-		tmp.add_nodo(end->dato);		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
-	cent=p->start;
-	for(int i =0;i<p.size;i++)
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent)
 		{
-		while(cent)
-			{
-			cent = find(cent->dato);
-			if (cent == NULL)
-				{tmp.add_nodo(cent->dato);} 
-			cent =cent->sig;
+		if(tmp.find(cent->dato) == NULL)
+			{//cout<<"no esta";
+			tmp.add_nodo(cent->dato);
 			}
+		cent =cent->sig;
 		}
-	return tmp;	
+	return tmp;
 	}
 
 };
