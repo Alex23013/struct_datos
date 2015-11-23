@@ -7,8 +7,11 @@ public:
 	nodo<T> *ant;
 
 nodo(T dato=0)
-	{this->dato=dato;
-	sig=NULL;ant=NULL;}
+	{
+	this->dato=dato;
+	sig=NULL;
+	ant=NULL;
+	}
 
-void add_dato(t dato){this->dato=dato;}
+//void add_dato(T dato){this->dato=dato;}
 };
