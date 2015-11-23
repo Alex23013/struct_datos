@@ -17,7 +17,16 @@ public:
 		if(start == NULL)
 		{return true;}
 		return false;
-		}	
+		}
+	nodo<T>* find(T dato)
+	{	nodo*out =NULL;
+		out=start;
+		while(out && out-> dato!=dato)
+		{
+			out =out->sig;
+		}		
+		return out;
+	}
 	void add_nodo(T dato)
 	{
 		cent=new nodo(dato);
@@ -43,6 +52,7 @@ public:
 		end =cent->ant;
 		delete cent;
 	}
+	
 	void print_pila()
 	{
 	cent=end;
@@ -56,56 +66,46 @@ public:
 		}
 	cout <<" "<< start->dato<<endl;
 	}
-	pila operator+(const pila o,const pila p) {
-	pila tmp ;
-	nodo<T> *cent;
-	cent=o->end;
-	for(int i =0;i<o.size;i++)
+	pila<T> operator+(pila b) {
+	pila<T> tmp ;
+	cent=start;
+	while(cent->sig)
 		{
-		while(cent->ant)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->ant;
-			}
-		tmp.add_nodo(start->dato);		
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
-	cent=p->end;
-	for(int i =0;i<p.size;i++)
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent->sig)
 		{
-		while(cent->ant)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->ant;
-			}
-		tmp.add_nodo(start->dato);		
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
+	tmp.add_nodo(cent->dato);
 	return tmp;
 	}
-	lista operator-(const pila o,const pila p) {
-	lista tmp ;
-	nodo<T> *cent;
-	cent=o->end;
-	for(int i =0;i<o.size;i++)
+
+	pila<T> operator-(pila b) {
+	pila<T> tmp ;
+	cent=start;
+	while(cent->sig)
 		{
-		while(cent->ant)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->ant;
-			}
-		tmp.add_nodo(start->dato);	
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
-	cent=p->end;
-	for(int i =0;i<p.size;i++)
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent)
 		{
-		while(cent)
-			{
-			cent = find(cent->dato);
-			if (cent == NULL)
-				{tmp.add_nodo(cent->dato);} 
-			cent =cent->ant;
+		if(tmp.find(cent->dato) == NULL)
+			{//cout<<"no esta";
+			tmp.add_nodo(cent->dato);
 			}
+		cent =cent->sig;
 		}
-	return tmp;	
+	return tmp;
 	}
 	
 
