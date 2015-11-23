@@ -1,5 +1,6 @@
-using namespace std;
+#include "nodo.h"
 template<typename T>
+using namespace std;
 class cola
 {
 public:
@@ -9,7 +10,6 @@ public:
 	
 	
 	int size ;
-
 	cola(){start=NULL;end=NULL;cent=NULL;size=0;}
 
 	int ask_size(){return size;}
@@ -20,7 +20,7 @@ public:
 		}	
 	void add_nodo(T dato)
 	{
-		cent=new nodo(dato);
+		cent=new nodo<T>(dato);
 		size++;
 		if(start == NULL){
 			start = cent;
@@ -43,71 +43,72 @@ public:
 		start =cent->sig;
 		delete cent;
 	}
+	nodo<T>* find(T dato)
+	{	nodo*out =NULL;
+		out=start;
+		while(out && out-> dato!=dato)
+		{
+			out =out->sig;
+		}		
+		return out;
+	}
+	
 	void print_cola()
 	{
 	cent=start;
 	if (cent == NULL)
 			{cout << "La cola esta vacia"<< endl;
 			return ;} 
+	cout<<"ini ";
 	while(cent->sig)
 		{
+		
 		cout <<" "<<cent->dato << " -> " ; 
 		cent =cent->sig;
 		}
 	cout <<" "<< end->dato<<endl;
 	}
-	cola operator+(const cola o,const cola p) {
-	cola tmp ;
-	nodo<T> *cent;
-	cent=o->start;
-	for(int i =0;i<o.size;i++)
+	
+	cola<T> operator+(cola b) {
+	cola<T> tmp ;
+	cent=start;
+	while(cent->sig)
 		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
-			}
-		tmp.add_nodo(end->dato);		
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
 		}
-	cent=p->start;
-	for(int i =0;i<p.size;i++)
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent->sig)
 		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
+		
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
+		}
+	tmp.add_nodo(cent->dato);
+	return tmp;
+	}
+
+	cola<T> operator-(cola b) {
+	cola<T> tmp ;
+	cent=start;
+	while(cent->sig)
+		{
+		tmp.add_nodo(cent->dato); 
+		cent =cent->sig;
+		}
+	tmp.add_nodo(cent->dato); 
+	cent=b.start;
+	while(cent)
+		{
+		if(tmp.find(cent->dato) == NULL)
+			{//cout<<"no esta";
+			tmp.add_nodo(cent->dato);
 			}
-		tmp.add_nodo(end->dato);		
+		cent =cent->sig;
 		}
 	return tmp;
 	}
-	lista operator-(const lista o,const lista p) {
-	lista tmp ;
-	nodo<T> *cent;
-	cent=o->start;
-	for(int i =0;i<o.size;i++)
-		{
-		while(cent->sig)
-			{
-			tmp.add_nodo(cent->dato); 
-			cent =cent->sig;
-			}
-		tmp.add_nodo(end->dato);		
-		}
-	cent=p->start;
-	for(int i =0;i<p.size;i++)
-		{
-		while(cent)
-			{
-			cent = find(cent->dato);
-			if (cent == NULL)
-				{tmp.add_nodo(cent->dato);} 
-			cent =cent->sig;
-			}
-		}
-	return tmp;	
-	}
-	
-	
 
 };
