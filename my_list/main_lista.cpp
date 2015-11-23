@@ -12,7 +12,7 @@ void caratula()
 }
 int main()
 {
-	lista mylista;
+	lista<int> mylista;
 	int opcion;
 	int salida =5;
 	while(salida != 0)
@@ -46,13 +46,13 @@ int main()
 	cout << "1: volver al menu    0: salir"<<endl;
 	cin >> salida;
 	}
-	lista b;
+	lista<int> b;
 	cout << "una lista de prueba"<<endl;
 	for(int i =0;i< 4;i++)
 		{b.add_nodo(i);}
 	b.print_lista();
 	
-	lista c;
+	lista<int> c;
 	cout <<"La suma: "<<endl;
 	c=mylista+b;
 	c.print_lista();
